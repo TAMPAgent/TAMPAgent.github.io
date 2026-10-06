@@ -1,4 +1,4 @@
-# TAgent project page
+# TAMPAgent project page
 
 A static page with no build step. Open `index.html` in a browser, or serve the folder:
 
@@ -30,6 +30,13 @@ For the web, H.264 MP4 without audio keeps files small and plays everywhere:
 
     pdftocairo -png -r 200 -singlefile ../paper/figures/NAME.pdf figures/NAME
 
+| File | Paper source | On the page |
+|---|---|---|
+| `teaser_tampagent.png` | `teaser_tagent.pdf` | Overview |
+| `rby1_success.png`, `rby1_tokens.png` | same name, `.pdf` | Results (2000 px wide) |
+| `rby1_failures.png` | `rby1_failures.pdf` | Results, narrow figure (1120 px wide) |
+| `factor_graph.png`, `execution_loop.jpg`, `variable_ladder.jpg`, `sim_tasks.jpg` | `factor_graph.pdf`, `tagent_execution_loop_new.pdf`, `variable_ladder_new.pdf`, `sim_tasks.pdf` | not used yet |
+
 ## Placeholders still to fill
 
 - Authors and affiliations (currently "Anonymous Authors" and an anonymous BibTeX entry).
@@ -43,13 +50,16 @@ Several figures come from `../tagent_figures/TAgent_figures.pptx`. After editing
 
 This renders the deck through PowerPoint, shows any still-empty media slot as "Media coming soon", crops away each slide's title, and writes PNGs to `figures/deck/`:
 
-| Slide | File | Website section |
+| Slide | File | Intended section |
 |---|---|---|
-| 4 | `rolling_strip.png` | Rolling example |
-| 5 to 10 | `storyboard_1.png` to `storyboard_6.png` | Rolling example stepper |
-| 11, 12 | `recovery_box.png`, `recovery_cup.png` | Replanning |
-| 13 | `three_artifacts.png` | Method |
-| 14 | `status_ladder.png` | Beliefs |
-| 15 | `ownership.png` | FAQ |
+| 6 | `rolling_strip.png` | Rolling example |
+| 7 to 12 | `storyboard_1.png` to `storyboard_6.png` | Rolling example stepper |
+| 13, 14 | `recovery_box.png`, `recovery_cup.png` | Replanning |
+| 15, 16 | `real_pink_object.png`, `real_penguin_mustard.png` | Real robot |
+| 17 | `three_artifacts.png` | Method |
+| 18 | `status_ladder.png` | Beliefs |
+| 19 | `ownership.png` | FAQ |
 
-The RB-Y1 results charts (`figures/rby1_*.png`) are exported from `../rby1_figures/*.pdf` with `pdftocairo -png -r 200 -singlefile`.
+The current `index.html` does not use any of these yet.
+
+The RB-Y1 results charts (`figures/rby1_*.png`) come from `../rby1_figures/make_figures_v2.py`, the same PDFs the paper uses, exported with `pdftocairo -png -scale-to-x 2000 -scale-to-y -1 -singlefile` (1120 for `rby1_failures`).

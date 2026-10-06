@@ -3,11 +3,11 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>TAgent: Agentic Belief-Space Planning for Loco-Manipulation under Partial Observability</title>
-  <meta name="description" content="TAgent lets a vision-language agent drive belief-space task and motion planning: the agent writes the problem and solves it with tools, while every action it executes has constraints certified by perception, grasping, and motion tools.">
-  <meta property="og:title" content="TAgent: Agentic Belief-Space Planning">
+  <title>TAMPAgent: Agentic Belief-Space Planning for Mobile Manipulation</title>
+  <meta name="description" content="TAMPAgent lets a vision-language agent drive belief-space task and motion planning: the agent writes the problem and solves it with tools, while every action it executes has constraints certified by perception, grasping, and motion tools.">
+  <meta property="og:title" content="TAMPAgent: Agentic Belief-Space Planning for Mobile Manipulation">
   <meta property="og:description" content="A vision-language agent as the policy of belief-space TAMP, with language beliefs and tool-certified actions.">
-  <meta property="og:image" content="figures/teaser_tagent.png">
+  <meta property="og:image" content="figures/teaser_tampagent.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet">
@@ -20,11 +20,11 @@
     <div class="wrap">
       <p class="kicker">Anonymous submission</p>
       <h1>
-        <span class="name">TAgent</span>
-        <span class="subtitle">Agentic Belief-Space Planning for Loco-Manipulation under Partial Observability</span>
+        <span class="name">TAMPAgent</span>
+        <span class="subtitle">Agentic Belief-Space Planning for Mobile Manipulation</span>
       </h1>
       <p class="authors">Anonymous Authors</p>
-      <p class="meta">September 2026</p>
+      <p class="meta">October 2026</p>
       <nav class="links" aria-label="Resources">
         <a class="button is-soon" href="#" aria-disabled="true" title="Coming soon">Paper <small>soon</small></a>
         <a class="button is-soon" href="#" aria-disabled="true" title="Coming soon">arXiv <small>soon</small></a>
@@ -47,12 +47,12 @@
 
         <div class="prose">
           <p class="lede">A robot in an unmapped home has to decide what to find out and how to act, often before it has seen where things are. Vision-language agents bring the priors for this, but when they call tools directly nothing declares what makes an action correct. Belief-space task and motion planning declares it, but pays for explicit distributions over the whole house and a hand-written problem.</p>
-          <p><strong>TAgent</strong> lets the agent act as the belief-space policy while its output keeps the planner's contract: parameterized actions whose constraints tools must certify before anything moves. Beliefs stay in language until a constraint needs a value from a tool.</p>
+          <p><strong>TAMPAgent</strong> lets the agent act as the belief-space policy while its output keeps the planner's contract: parameterized actions whose constraints tools must certify before anything moves. Beliefs stay in language until a constraint needs a value from a tool.</p>
         </div>
 
         <figure class="media">
-          <img class="figure-img" src="figures/teaser_tagent.png" width="2000" height="536" alt="Four architectures compared: TAMP, VLM-TAMP, Code as Policies, and Agentic-TAMP (ours), by how the agent, task planner, and tools connect">
-          <figcaption>Who owns which part of planning. Classical TAMP and VLM-TAMP leave the search to the planner; Code as Policies drops the planner's constraints. In Agentic-TAMP, the agent writes the problem and searches with tools, and the planner derives what must hold.</figcaption>
+          <img class="figure-img" src="figures/teaser_tampagent.png" width="2000" height="537" alt="Four architectures compared: TAMP, VLM-TAMP, Code as Policies, and TAMPAgent (ours), by how the agent, task planner, and tools connect">
+          <figcaption>Who orchestrates planning. TAMP solves hand-written problems with a task planner that calls the tools; VLM-TAMP lets the agent write the problem but keeps the planning pipeline fixed; Code as Policies lets the agent call tools directly and relies on execution feedback. In TAMPAgent, the agent orchestrates both the task planner, which compiles its plans into constraints, and the tools, which certify values that satisfy them.</figcaption>
         </figure>
       </div>
     </section>
@@ -72,7 +72,7 @@
         <div class="prose">
           <p class="section-kicker">Method</p>
           <h2>A conversation between agent and planner</h2>
-          <p>TAgent runs one loop. The agent writes the problem from its current belief, the planner grounds the actions, the agent plans with a hypothesis, the planner turns the plan into constraints, and the agent solves them with tools. Only then does the robot act, observe, and start again. Below, each step is shown on the run from the video.</p>
+          <p>TAMPAgent runs one loop. The agent writes the problem from its current belief, the planner grounds the actions, the agent plans with a hypothesis, the planner turns the plan into constraints, and the agent solves them with tools. Only then does the robot act, observe, and start again. Below, each step is shown on the run from the video.</p>
         </div>
         <article class="step">
           <div class="prose">
@@ -140,43 +140,48 @@
         <div class="prose">
           <p class="section-kicker">Evaluation</p>
           <h2>Results</h2>
-          <p>Six simulated tasks share one instruction, <em>serve the apple on the plate</em>, and differ in where the apple starts and what blocks it. The robot, an RB-Y1, starts facing away from the apple every time. We compare against Code as Policies, where the same agent calls the same tools without a planner, over 20 episodes per task.</p>
+          <p>Six simulated tasks share one instruction, <em>serve the apple on the plate</em>, and differ in where the apple starts and what hides or blocks it. The robot, an RB-Y1, starts facing away from the apple every time. We compare against Code as Policies (CaP), where the same agent writes code that calls the same tools without a planner, over 20 episodes per task.</p>
         </div>
         <div class="sim-grid">
           <figure class="media" style="margin:0"><div class="frame" data-placeholder><video data-autoplay src="videos/sim-t1.mp4" poster="videos/sim-t1.jpg" muted loop playsinline preload="metadata" aria-label="Task 1"></video></div><figcaption><span class="tag">T1</span>On the dining table</figcaption></figure>
           <figure class="media" style="margin:0"><div class="frame" data-placeholder><video data-autoplay src="videos/sim-t2.mp4" poster="videos/sim-t2.jpg" muted loop playsinline preload="metadata" aria-label="Task 2"></video></div><figcaption><span class="tag">T2</span>On the countertop</figcaption></figure>
-          <figure class="media" style="margin:0"><div class="frame" data-placeholder><video data-autoplay src="videos/sim-t3.mp4" poster="videos/sim-t3.jpg" muted loop playsinline preload="metadata" aria-label="Task 3"></video></div><figcaption><span class="tag">T3</span>In the fridge (pending)</figcaption></figure>
+          <figure class="media" style="margin:0"><div class="frame" data-placeholder><video data-autoplay src="videos/sim-t3.mp4" poster="videos/sim-t3.jpg" muted loop playsinline preload="metadata" aria-label="Task 3"></video></div><figcaption><span class="tag">T3</span>Inside the fridge</figcaption></figure>
           <figure class="media" style="margin:0"><div class="frame" data-placeholder><video data-autoplay src="videos/sim-t4.mp4" poster="videos/sim-t4.jpg" muted loop playsinline preload="metadata" aria-label="Task 4"></video></div><figcaption><span class="tag">T4</span>Blocked by a cup</figcaption></figure>
           <figure class="media" style="margin:0"><div class="frame" data-placeholder><video data-autoplay src="videos/sim-t5.mp4" poster="videos/sim-t5.jpg" muted loop playsinline preload="metadata" aria-label="Task 5"></video></div><figcaption><span class="tag">T5</span>Blocked by a drawer</figcaption></figure>
           <figure class="media" style="margin:0"><div class="frame" data-placeholder><video data-autoplay src="videos/sim-t6.mp4" poster="videos/sim-t6.jpg" muted loop playsinline preload="metadata" aria-label="Task 6"></video></div><figcaption><span class="tag">T6</span>Blocked by both</figcaption></figure>
         </div>
 
         <div class="prose">
-          <h3>Long-horizon dependencies</h3>
-          <p>The methods tie when the apple is in the open. With blockers, TAgent succeeds in 70% of episodes against 42%, because the planner exposes how one step constrains the next before the robot moves.</p>
+          <h3>Hypotheses and long-horizon dependencies</h3>
+          <p>The methods are on par when the apple is in the open (T1, T2). When it is hidden or blocked (T3 to T6), TAMPAgent succeeds in 68% of episodes against 38%. A plausible but infeasible plan, such as picking the apple through the cup, fails in the planner before the robot moves, and the failed constraint names what the agent must clear first.</p>
         </div>
         <figure class="media">
-          <img class="figure-img" src="figures/rby1_success_rate.png" width="1400" height="500" loading="lazy" alt="Absolute and partial success per task for Code as Policies and TAgent">
-          <figcaption>Absolute success requires the apple on the plate; partial success credits completed stages.</figcaption>
+          <img class="figure-img" src="figures/rby1_success.png" width="2000" height="546" loading="lazy" alt="Absolute and partial success per task for CaP and TAMPAgent">
+          <figcaption>Success over 20 episodes per task. Absolute success counts an episode only if the apple ends on the plate; partial success is the fraction of subtasks completed (find the apple, clear each blocker, pick, find the plate, place).</figcaption>
         </figure>
 
         <div class="prose">
           <h3>Safer execution</h3>
-          <p>Every motion TAgent executes was certified first, so it causes 7 collisions or drops against 24. Its failures are mostly timeouts instead, which leave the scene intact.</p>
+          <p>Every motion TAMPAgent executes was certified first, so it causes 10 collisions or drops over the six tasks against 26 for CaP, and none on the drawer task, where CaP collides in 7 of 20 episodes. Its failures are mostly timeouts instead, which leave the scene intact.</p>
         </div>
-        <figure class="media">
-          <img class="figure-img" src="figures/rby1_failure_attribution.png" width="1400" height="520" loading="lazy" alt="Failed episodes per task split into collisions or drops and timeouts">
+        <figure class="media narrow">
+          <img class="figure-img" src="figures/rby1_failures.png" width="1120" height="726" loading="lazy" alt="Failed episodes per task for CaP and TAMPAgent, split into collisions or drops and timeouts">
           <figcaption>Failed episodes out of 20: collisions or drops (solid) and timeouts (hatched).</figcaption>
         </figure>
 
         <div class="prose">
           <h3>Fewer tokens</h3>
-          <p>The planner keeps a compact record of the problem and its progress, so the agent reads and writes less: 36% fewer input tokens and 56% fewer output tokens.</p>
+          <p>The planner keeps a compact record of the problem and its progress, so the agent reads and writes less: 38% fewer uncached input tokens and 59% fewer output tokens over the six tasks, including those where success is on par.</p>
         </div>
         <figure class="media">
-          <img class="figure-img" src="figures/rby1_token_usage.png" width="1400" height="500" loading="lazy" alt="Uncached input and output tokens per task for Code as Policies and TAgent">
-          <figcaption>Tokens in thousands over 20 episodes per task; input tokens are uncached. T3 is still running.</figcaption>
+          <img class="figure-img" src="figures/rby1_tokens.png" width="2000" height="546" loading="lazy" alt="Uncached input and output tokens per task for CaP and TAMPAgent">
+          <figcaption>Uncached input and output tokens, in thousands, averaged over the 20 episodes of each task.</figcaption>
         </figure>
+
+        <div class="prose">
+          <h3>On a real robot</h3>
+          <p>On a real RB-Y1 in an office lab, TAMPAgent runs three categories of tasks. In simple pick and place, the robot puts an object such as a mustard bottle in a receptacle, finding both by exploring open surfaces. With an out-of-view receptacle, the robot carries the object while it searches, and plans the placement once the receptacle is certified. With a hidden object, as in the video above, the agent hypothesizes what hides the target and moves it first. Hidden objects cost the most, 973k uncached input and 127k output tokens per episode on average, against 376k and 39k for simple pick and place.</p>
+        </div>
       </div>
     </section>
 
@@ -204,7 +209,7 @@
           <p class="section-kicker">Questions</p>
           <h2>FAQ</h2>
           <details>
-            <summary>What does TAgent guarantee?</summary>
+            <summary>What does TAMPAgent guarantee?</summary>
             <p>Every constraint of an executed action was certified by a tool under the robot's current perception. The agent can still choose a poor plan, and tools can return false positives, so a certified grasp can still fail.</p>
           </details>
           <details>
@@ -222,9 +227,9 @@
           <h2>BibTeX</h2>
           <div class="bibtex-block">
             <button class="copy-button" type="button">Copy</button>
-<pre class="code" id="bibtex"><code>@misc{anonymous2026tagent,
-  title  = {{TAgent}: Agentic Belief-Space Planning for
-            Loco-Manipulation under Partial Observability},
+<pre class="code" id="bibtex"><code>@misc{anonymous2026tampagent,
+  title  = {{TAMPAgent}: Agentic Belief-Space Planning for
+            Mobile Manipulation},
   author = {Anonymous},
   year   = {2026},
   note   = {Under review}
