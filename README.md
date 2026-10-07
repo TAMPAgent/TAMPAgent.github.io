@@ -14,11 +14,10 @@ Then remove `data-placeholder` from that video's `<div class="frame">` in `index
 
 | File | Where it appears |
 |---|---|
-| `method.mp4` | Hero: the method video |
-| `rby1-penguin.mp4` | Real RB-Y1 task card (real footage, the rolling example run) |
-| `real-y1.mp4` | RB-Y1 simulation task card |
+| `teaser.mp4` | Overview: the real run told as a conversation (real footage, re-encoded with `-crf 27 -preset slow`, 1080p so the text stays sharp) |
+| `method.mp4` | Gallery placeholders |
 | `sim-t1.mp4` to `sim-t6.mp4` | Six simulated tasks |
-| `recovery-box.mp4`, `recovery-cup.mp4` | Replanning section |
+| `rby1-penguin.mp4`, `real-y1.mp4`, `recovery-box.mp4`, `recovery-cup.mp4` | Not used by the current page |
 
 For the web, H.264 MP4 without audio keeps files small and plays everywhere:
 
