@@ -60,6 +60,7 @@
     <nav class="chapter-nav" aria-label="Sections">
       <ul>
         <li><a href="#method">Method</a></li>
+        <li><a href="#sandbox">Sandbox</a></li>
         <li><a href="#results">Results</a></li>
         <li><a href="#gallery">Gallery</a></li>
         <li><a href="#faq">FAQ</a></li>
@@ -135,6 +136,53 @@
       </div>
     </section>
 
+    <section class="chapter" id="sandbox">
+      <div class="wrap">
+        <div class="prose">
+          <p class="section-kicker">Sandbox</p>
+          <h2>What the agent sees and writes</h2>
+          <p>On the real robot, the agent is a coding agent in a locked-down container. It has a shell, Python and a handbook, and it reaches the robot only through a gateway that forwards a fixed list of routes. Everything below is from that sandbox: the handbook it reads, and the files it wrote during a real run.</p>
+        </div>
+        <div class="sb-cards">
+          <article class="sb-card">
+            <h3><span class="sb-num">1</span>Files in its workspace</h3>
+            <p>Each step is a small Python file that states what the agent believes, what it wants to do and, after running, what it achieved. Every request and reply is saved beside it.</p>
+            <div class="sb-chips">
+              <button type="button" data-sb-open="work/serve/task_chain.txt">task_chain.txt</button>
+              <button type="button" data-sb-open="work/serve/05_author.py">05_author.py</button>
+              <button type="button" data-sb-open="work/serve/checkpoint.txt">checkpoint.txt</button>
+            </div>
+          </article>
+          <article class="sb-card">
+            <h3><span class="sb-num">2</span>Beliefs, through the API</h3>
+            <p>It writes the planning problem, what it sees, where things rest, whether access is clear, plans with probabilities, and whether a hand holds an object. These change the planner's belief, never the robot.</p>
+            <div class="sb-chips">
+              <button type="button" data-sb-open="work/serve/populate_request.json">the problem</button>
+              <button type="button" data-sb-open="examples/mustard/plan_slates.json">plan slates</button>
+              <button type="button" data-sb-open="handbook/AGENT_CUSTODY.md">custody</button>
+            </div>
+          </article>
+          <article class="sb-card">
+            <h3><span class="sb-num">3</span>Requests for motion</h3>
+            <p>It cannot move the robot directly. It asks for a grant for the exact locked step, and the planner issues one only when every constraint of that step is certified. Then it dispatches once.</p>
+            <div class="sb-chips">
+              <button type="button" data-sb-open="work/serve/search_grant_request.json">grant request</button>
+              <button type="button" data-sb-open="work/serve/search_grant.json">issued grant</button>
+              <button type="button" data-sb-open="work/serve/08_explore.py">08_explore.py</button>
+            </div>
+          </article>
+        </div>
+        <div class="sb-viewer" data-sandbox>
+          <nav class="sb-side" aria-label="Sandbox files">
+            <input class="sb-filter" type="search" placeholder="Filter files and text" aria-label="Filter sandbox files">
+            <div class="sb-tree"></div>
+          </nav>
+          <article class="sb-doc" tabindex="-1" aria-live="polite"></article>
+        </div>
+        <p class="sb-foot">The run in <code>/workspace/work/serve</code> is a real episode that a hand fault stopped during the search; the agent's notes show how it waited instead of retrying. The planner records are from the mustard-bottle run in the gallery.</p>
+      </div>
+    </section>
+
     <section class="chapter" id="results">
       <div class="wrap">
         <div class="prose">
@@ -143,11 +191,11 @@
           <p>Six simulated tasks share one instruction, <em>serve the apple on the plate</em>, and differ in where the apple starts and what hides or blocks it. The robot, an RB-Y1, starts facing away from the apple every time. We compare against Code as Policies (CaP), where the same agent writes code that calls the same tools without a planner, over 20 episodes per task.</p>
         </div>
         <div class="sim-grid">
-          <figure class="media" style="margin:0"><div class="frame" data-placeholder><video data-autoplay src="videos/sim-t1.mp4" poster="videos/sim-t1.jpg" muted loop playsinline preload="metadata" aria-label="Task 1"></video></div><figcaption><span class="tag">T1</span>On the dining table</figcaption></figure>
+          <figure class="media" style="margin:0"><div class="frame"><video src="videos/sim-t1.mp4" poster="videos/sim-t1.jpg" controls muted playsinline preload="none" aria-label="Task 1 in simulation on a Unitree G1: the robot picks the apple from the dining table and places it on the plate"></video></div><figcaption><span class="tag">T1</span>On the dining table (G1)</figcaption></figure>
           <figure class="media" style="margin:0"><div class="frame" data-placeholder><video data-autoplay src="videos/sim-t2.mp4" poster="videos/sim-t2.jpg" muted loop playsinline preload="metadata" aria-label="Task 2"></video></div><figcaption><span class="tag">T2</span>On the countertop</figcaption></figure>
           <figure class="media" style="margin:0"><div class="frame" data-placeholder><video data-autoplay src="videos/sim-t3.mp4" poster="videos/sim-t3.jpg" muted loop playsinline preload="metadata" aria-label="Task 3"></video></div><figcaption><span class="tag">T3</span>Inside the fridge</figcaption></figure>
-          <figure class="media" style="margin:0"><div class="frame" data-placeholder><video data-autoplay src="videos/sim-t4.mp4" poster="videos/sim-t4.jpg" muted loop playsinline preload="metadata" aria-label="Task 4"></video></div><figcaption><span class="tag">T4</span>Blocked by a cup</figcaption></figure>
-          <figure class="media" style="margin:0"><div class="frame" data-placeholder><video data-autoplay src="videos/sim-t5.mp4" poster="videos/sim-t5.jpg" muted loop playsinline preload="metadata" aria-label="Task 5"></video></div><figcaption><span class="tag">T5</span>Blocked by a drawer</figcaption></figure>
+          <figure class="media" style="margin:0"><div class="frame"><video src="videos/sim-t4.mp4" poster="videos/sim-t4.jpg" controls muted playsinline preload="none" aria-label="Task 4 in simulation on an RB-Y1: the agent moves the cup that blocks the apple, picks the apple, and carries it to the plate"></video></div><figcaption><span class="tag">T4</span>Blocked by a cup</figcaption></figure>
+          <figure class="media" style="margin:0"><div class="frame"><video src="videos/sim-t5.mp4" poster="videos/sim-t5.jpg" controls muted playsinline preload="none" aria-label="Task 5 in simulation on an RB-Y1: an open drawer blocks the approach, the agent closes it, picks the apple, and places it on the plate"></video></div><figcaption><span class="tag">T5</span>Blocked by a drawer</figcaption></figure>
           <figure class="media" style="margin:0"><div class="frame" data-placeholder><video data-autoplay src="videos/sim-t6.mp4" poster="videos/sim-t6.jpg" muted loop playsinline preload="metadata" aria-label="Task 6"></video></div><figcaption><span class="tag">T6</span>Blocked by both</figcaption></figure>
         </div>
 
@@ -190,11 +238,11 @@
         <div class="prose">
           <p class="section-kicker">Gallery</p>
           <h2>More runs</h2>
-          <p>Other real and simulated runs. Videos coming soon.</p>
+          <p>Other real and simulated runs. More videos coming soon.</p>
         </div>
         <div class="sim-grid">
-          <figure class="media" style="margin:0"><div class="frame" data-placeholder><video src="videos/method.mp4" poster="videos/method.jpg" muted loop playsinline preload="none" aria-label="Gallery placeholder 1"></video></div><figcaption>Run 1</figcaption></figure>
-          <figure class="media" style="margin:0"><div class="frame" data-placeholder><video src="videos/method.mp4" poster="videos/method.jpg" muted loop playsinline preload="none" aria-label="Gallery placeholder 2"></video></div><figcaption>Run 2</figcaption></figure>
+          <figure class="media" style="margin:0"><div class="frame"><video src="videos/real-mustard.mp4" poster="videos/real-mustard.jpg" controls muted playsinline preload="none" aria-label="Real RB-Y1 run told as a conversation: the robot picks a mustard bottle from a desk, carries it while searching, and places it in the blue basket"></video></div><figcaption><span class="tag">Real</span>Mustard bottle into the blue basket: pick, carry while searching, place.</figcaption></figure>
+          <figure class="media" style="margin:0"><div class="frame"><video src="videos/g1-toy-dog.mp4" poster="videos/g1-toy-dog.jpg" controls muted playsinline preload="none" aria-label="Real Unitree G1 run told as a conversation: the agent replans after a kinematic failure, steps closer, and picks up a toy dog"></video></div><figcaption><span class="tag">G1</span>Pick up the toy dog: a failed grasp check makes the agent step closer before picking.</figcaption></figure>
           <figure class="media" style="margin:0"><div class="frame" data-placeholder><video src="videos/method.mp4" poster="videos/method.jpg" muted loop playsinline preload="none" aria-label="Gallery placeholder 3"></video></div><figcaption>Run 3</figcaption></figure>
           <figure class="media" style="margin:0"><div class="frame" data-placeholder><video src="videos/method.mp4" poster="videos/method.jpg" muted loop playsinline preload="none" aria-label="Gallery placeholder 4"></video></div><figcaption>Run 4</figcaption></figure>
           <figure class="media" style="margin:0"><div class="frame" data-placeholder><video src="videos/method.mp4" poster="videos/method.jpg" muted loop playsinline preload="none" aria-label="Gallery placeholder 5"></video></div><figcaption>Run 5</figcaption></figure>
@@ -244,6 +292,8 @@
     <div class="wrap">Page layout inspired by the HomeBody project page.</div>
   </footer>
 
+  <script src="sandbox/docs.js" defer></script>
+  <script src="sandbox.js" defer></script>
   <script src="site.js" defer></script>
 </body>
 </html>

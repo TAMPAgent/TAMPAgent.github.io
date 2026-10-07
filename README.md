@@ -15,8 +15,10 @@ Then remove `data-placeholder` from that video's `<div class="frame">` in `index
 | File | Where it appears |
 |---|---|
 | `teaser.mp4` | Overview: the real run told as a conversation (real footage, re-encoded with `-crf 27 -preset slow`, 1080p so the text stays sharp) |
+| `real-mustard.mp4` | Gallery, first tile: the mustard-bottle run |
+| `g1-toy-dog.mp4` | Gallery, second tile: the Unitree G1 toy-dog run |
 | `method.mp4` | Gallery placeholders |
-| `sim-t1.mp4` to `sim-t6.mp4` | Six simulated tasks |
+| `sim-t1.mp4` to `sim-t6.mp4` | Six simulated tasks: T1 (G1), T4 and T5 (RB-Y1) are real rollouts with controls; T2, T3, T6 are still placeholders |
 | `rby1-penguin.mp4`, `real-y1.mp4`, `recovery-box.mp4`, `recovery-cup.mp4` | Not used by the current page |
 
 For the web, H.264 MP4 without audio keeps files small and plays everywhere:
@@ -62,3 +64,14 @@ This renders the deck through PowerPoint, shows any still-empty media slot as "M
 The current `index.html` does not use any of these yet.
 
 The RB-Y1 results charts (`figures/rby1_*.png`) come from `../rby1_figures/make_figures_v2.py`, the same PDFs the paper uses, exported with `pdftocairo -png -scale-to-x 2000 -scale-to-y -1 -singlefile` (1120 for `rby1_failures`).
+
+## Sandbox viewer
+
+The Sandbox section is generated from the real agent sandbox. After the handbook changes, rebuild:
+
+    cd ../tagent_figures && pipx run --spec markdown python build_sandbox_viewer.py /path/to/codex-sandbox-real
+
+This writes `sandbox/docs.js` (every document, pre-rendered) and `sandbox/img/`. Only the handbook,
+one example work folder and the planner records in `../tagent_figures/sandbox_examples/` are
+published; the build refuses to write output containing names, home paths, private addresses or
+the lab location. `sandbox.js` renders the tree and viewer; `#sandbox:<path>` deep-links a document.
