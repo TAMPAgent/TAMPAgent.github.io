@@ -4,22 +4,18 @@ A static page with no build step. Open `index.html` in a browser, or serve the f
 
     python3 -m http.server 8000   # then visit http://localhost:8000
 
-## Replacing the placeholder videos
+## Videos
 
-Every video on the page is a placeholder. To use a real clip, overwrite the file in `videos/` with the same name, and regenerate its poster frame:
+Every video tile shows real footage; tiles without a video were removed. To add one, put the clip in `videos/`, make a poster frame and add a `<figure>` to the grid (copy an existing tile):
 
-    ffmpeg -ss 0.5 -i videos/NAME.mp4 -frames:v 1 -q:v 4 videos/NAME.jpg
-
-Then remove `data-placeholder` from that video's `<div class="frame">` in `index.html` to hide the "Placeholder video" badge.
+    ffmpeg -ss 1 -i videos/NAME.mp4 -frames:v 1 -vf scale=1280:-2 -q:v 3 videos/NAME.jpg
 
 | File | Where it appears |
 |---|---|
-| `teaser.mp4` | Overview: the real run told as a conversation (real footage, re-encoded with `-crf 27 -preset slow`, 1080p so the text stays sharp) |
-| `real-mustard.mp4` | Gallery, first tile: the mustard-bottle run |
-| `g1-toy-dog.mp4` | Gallery, second tile: the Unitree G1 toy-dog run |
-| `method.mp4` | Gallery placeholders |
-| `sim-t1.mp4` to `sim-t6.mp4` | Six simulated tasks: T1 (G1), T4 and T5 (RB-Y1) are real rollouts with controls; T2, T3, T6 are still placeholders |
-| `rby1-penguin.mp4`, `real-y1.mp4`, `recovery-box.mp4`, `recovery-cup.mp4` | Not used by the current page |
+| `teaser.mp4` | Overview: the real run told as a conversation |
+| `sim-t1.mp4` (G1), `sim-t4.mp4` (RB-Y1), `sim-t4-g1.mp4` (G1), `sim-t5.mp4` (RB-Y1) | Results: simulated tasks |
+| `real-mustard.mp4`, `g1-toy-dog.mp4` | Gallery |
+| `rby1-penguin.mp4` | Not used by the current page |
 
 For the web, H.264 MP4 without audio keeps files small and plays everywhere:
 

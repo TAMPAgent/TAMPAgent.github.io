@@ -188,15 +188,13 @@
         <div class="prose">
           <p class="section-kicker">Evaluation</p>
           <h2>Results</h2>
-          <p>Six simulated tasks share one instruction, <em>serve the apple on the plate</em>, and differ in where the apple starts and what hides or blocks it. The robot, an RB-Y1, starts facing away from the apple every time. We compare against Code as Policies (CaP), where the same agent writes code that calls the same tools without a planner, over 20 episodes per task.</p>
+          <p>Six simulated tasks share one instruction, <em>serve the apple on the plate</em>, and differ in where the apple starts and what hides or blocks it. The robot, an RB-Y1, starts facing away from the apple every time. We compare against Code as Policies (CaP), where the same agent writes code that calls the same tools without a planner, over 20 episodes per task. The charts are from the RB-Y1; the videos show rollouts on the RB-Y1 and on a Unitree G1.</p>
         </div>
-        <div class="sim-grid">
+        <div class="sim-grid two">
           <figure class="media" style="margin:0"><div class="frame"><video src="videos/sim-t1.mp4" poster="videos/sim-t1.jpg" controls muted playsinline preload="none" aria-label="Task 1 in simulation on a Unitree G1: the robot picks the apple from the dining table and places it on the plate"></video></div><figcaption><span class="tag">T1</span>On the dining table (G1)</figcaption></figure>
-          <figure class="media" style="margin:0"><div class="frame" data-placeholder><video data-autoplay src="videos/sim-t2.mp4" poster="videos/sim-t2.jpg" muted loop playsinline preload="metadata" aria-label="Task 2"></video></div><figcaption><span class="tag">T2</span>On the countertop</figcaption></figure>
-          <figure class="media" style="margin:0"><div class="frame" data-placeholder><video data-autoplay src="videos/sim-t3.mp4" poster="videos/sim-t3.jpg" muted loop playsinline preload="metadata" aria-label="Task 3"></video></div><figcaption><span class="tag">T3</span>Inside the fridge</figcaption></figure>
-          <figure class="media" style="margin:0"><div class="frame"><video src="videos/sim-t4.mp4" poster="videos/sim-t4.jpg" controls muted playsinline preload="none" aria-label="Task 4 in simulation on an RB-Y1: the agent moves the cup that blocks the apple, picks the apple, and carries it to the plate"></video></div><figcaption><span class="tag">T4</span>Blocked by a cup</figcaption></figure>
+          <figure class="media" style="margin:0"><div class="frame"><video src="videos/sim-t4.mp4" poster="videos/sim-t4.jpg" controls muted playsinline preload="none" aria-label="Task 4 in simulation on an RB-Y1: the agent moves the cup that blocks the apple, picks the apple, and carries it to the plate"></video></div><figcaption><span class="tag">T4</span>Blocked by a cup (RB-Y1)</figcaption></figure>
+          <figure class="media" style="margin:0"><div class="frame"><video src="videos/sim-t4-g1.mp4" poster="videos/sim-t4-g1.jpg" controls muted playsinline preload="none" aria-label="Task 4 in simulation on a Unitree G1: the planner reports that the cup blocks every grasp on the apple, the agent moves the cup aside, then picks the apple and places it on the plate"></video></div><figcaption><span class="tag">T4</span>Blocked by a cup (G1)</figcaption></figure>
           <figure class="media" style="margin:0"><div class="frame"><video src="videos/sim-t5.mp4" poster="videos/sim-t5.jpg" controls muted playsinline preload="none" aria-label="Task 5 in simulation on an RB-Y1: an open drawer blocks the approach, the agent closes it, picks the apple, and places it on the plate"></video></div><figcaption><span class="tag">T5</span>Blocked by a drawer</figcaption></figure>
-          <figure class="media" style="margin:0"><div class="frame" data-placeholder><video data-autoplay src="videos/sim-t6.mp4" poster="videos/sim-t6.jpg" muted loop playsinline preload="metadata" aria-label="Task 6"></video></div><figcaption><span class="tag">T6</span>Blocked by both</figcaption></figure>
         </div>
 
         <div class="prose">
@@ -238,15 +236,11 @@
         <div class="prose">
           <p class="section-kicker">Gallery</p>
           <h2>More runs</h2>
-          <p>Other real and simulated runs. More videos coming soon.</p>
+          <p>Other real runs, on the RB-Y1 and on a Unitree G1.</p>
         </div>
-        <div class="sim-grid">
+        <div class="sim-grid two">
           <figure class="media" style="margin:0"><div class="frame"><video src="videos/real-mustard.mp4" poster="videos/real-mustard.jpg" controls muted playsinline preload="none" aria-label="Real RB-Y1 run told as a conversation: the robot picks a mustard bottle from a desk, carries it while searching, and places it in the blue basket"></video></div><figcaption><span class="tag">Real</span>Mustard bottle into the blue basket: pick, carry while searching, place.</figcaption></figure>
           <figure class="media" style="margin:0"><div class="frame"><video src="videos/g1-toy-dog.mp4" poster="videos/g1-toy-dog.jpg" controls muted playsinline preload="none" aria-label="Real Unitree G1 run told as a conversation: the agent replans after a kinematic failure, steps closer, and picks up a toy dog"></video></div><figcaption><span class="tag">G1</span>Pick up the toy dog: a failed grasp check makes the agent step closer before picking.</figcaption></figure>
-          <figure class="media" style="margin:0"><div class="frame" data-placeholder><video src="videos/method.mp4" poster="videos/method.jpg" muted loop playsinline preload="none" aria-label="Gallery placeholder 3"></video></div><figcaption>Run 3</figcaption></figure>
-          <figure class="media" style="margin:0"><div class="frame" data-placeholder><video src="videos/method.mp4" poster="videos/method.jpg" muted loop playsinline preload="none" aria-label="Gallery placeholder 4"></video></div><figcaption>Run 4</figcaption></figure>
-          <figure class="media" style="margin:0"><div class="frame" data-placeholder><video src="videos/method.mp4" poster="videos/method.jpg" muted loop playsinline preload="none" aria-label="Gallery placeholder 5"></video></div><figcaption>Run 5</figcaption></figure>
-          <figure class="media" style="margin:0"><div class="frame" data-placeholder><video src="videos/method.mp4" poster="videos/method.jpg" muted loop playsinline preload="none" aria-label="Gallery placeholder 6"></video></div><figcaption>Run 6</figcaption></figure>
         </div>
       </div>
     </section>

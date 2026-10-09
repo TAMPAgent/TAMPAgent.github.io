@@ -144,6 +144,7 @@ h3 { margin: 40px 0 10px; font-size: 22px; line-height: 1.3; }
 .sim-grid .frame { border-radius: 8px; }
 .sim-grid .frame[data-placeholder]::after { top: 8px; left: 8px; font-size: 11px; }
 .sim-grid .tag { display: inline-block; font-weight: 700; margin-right: 6px; }
+.sim-grid.two { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 
 /* Steps */
 .step { margin: 36px 0; }
@@ -224,7 +225,7 @@ footer { margin-top: 64px; padding: 28px 0 48px; border-top: 1px solid var(--lin
   .chapter { padding-top: 48px; }
 }
 @media (max-width: 460px) {
-  .ladder, .sim-grid { grid-template-columns: minmax(0, 1fr); }
+  .ladder, .sim-grid, .sim-grid.two { grid-template-columns: minmax(0, 1fr); }
 }
 
 /* Real footage that is not 16:9: show it whole on a dark frame */
