@@ -13,7 +13,7 @@ Every video tile shows real footage; tiles without a video were removed. To add 
 | File | Where it appears |
 |---|---|
 | `teaser.mp4` | Overview: the real run told as a conversation |
-| `sim-t1.mp4` (G1), `sim-t4.mp4` (RB-Y1), `sim-t4-g1.mp4` (G1), `sim-t5.mp4` (RB-Y1) | Results: simulated tasks |
+| `sim-t1.mp4` (G1), `sim-t3.mp4` (RB-Y1), `sim-t4.mp4` (RB-Y1), `sim-t4-g1.mp4` (G1), `sim-t5.mp4` (RB-Y1) | Results: simulated tasks |
 | `real-mustard.mp4`, `g1-toy-dog.mp4` | Gallery |
 | `rby1-penguin.mp4` | Not used by the current page |
 
