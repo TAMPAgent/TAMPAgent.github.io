@@ -78,19 +78,19 @@
         <article class="step">
           <div class="prose">
             <h3><span class="step-num">1</span>Write the problem</h3>
-            <p>The agent turns the instruction into a planning problem: a goal and the current value of every variable it needs. Values the robot has not observed are hypotheses written in words. Here the agent guesses that the pink object is on the black table and the bowl is on the wooden desk.</p>
+            <p>The agent turns the instruction into a planning problem: a goal and the current value of every variable it needs. Values the robot has not observed are hypotheses written in words. Here the agent only knows the black table, so it guesses that both the apple and the bowl are there, and plans to find the apple, pick it, find the bowl, and place it.</p>
           </div>
           <figure class="media">
-            <img class="figure-img" src="figures/method/step1.png" width="1600" height="720" loading="lazy" alt="The agent writes the goal In[pink, bowl] = True and its current belief about each object.">
+            <img class="figure-img" src="figures/method/step1.png" width="1920" height="1080" loading="lazy" alt="The agent writes the problem P0 with the goal In[apple, bowl] and language beliefs, then its first plan.">
           </figure>
         </article>
         <article class="step">
           <div class="prose">
-            <h3><span class="step-num">2</span>Ground the actions</h3>
-            <p>From the problem, the planner lists the actions that can apply, each with preconditions and effects over the problem's variables. The robot has not seen the pink object yet, and its first look finds nothing.</p>
+            <h3><span class="step-num">2</span>Look, and fail to certify</h3>
+            <p>The robot looks for the apple from several viewpoints. Segmentation finds nothing, then only a sliver with a single depth pixel, so the observation constraint of detect cannot be certified: the planner reports an epistemic gap and will not let the robot pick.</p>
           </div>
           <figure class="media">
-            <img class="figure-img" src="figures/method/step2.png" width="1600" height="720" loading="lazy" alt="The planner grounds explore, approach, pick, and place for the pink object; segmentation finds no pink object in the robot's view.">
+            <img class="figure-img" src="figures/method/step2.png" width="1920" height="1080" loading="lazy" alt="SAM 3 finds only a 303 pixel sliver of the apple, and the planner reports the observation as occluded.">
           </figure>
         </article>
         <article class="step">
@@ -99,7 +99,7 @@
             <p>The agent uses its priors to rank where the object could be, and commits to the most likely explanation: the penguin plush hides it. Its plan moves the penguin out of the way before looking again.</p>
           </div>
           <figure class="media">
-            <img class="figure-img" src="figures/method/step3.png" width="1600" height="720" loading="lazy" alt="The agent ranks four hypotheses and plans to move the penguin first.">
+            <img class="figure-img" src="figures/method/step3.png" width="1920" height="1080" loading="lazy" alt="The agent scores four hypotheses, updates its belief to behind the penguin, and plans to move the penguin first.">
           </figure>
         </article>
         <article class="step">
@@ -108,7 +108,7 @@
             <p>The planner grounds the plan into a factor graph. The continuous choices of each action, such as the grasp, arm pose, path, and placement, become variables, and each action's preconditions become constraints over them. A variable shared by two actions couples them: the grasp chosen to pick the penguin must also let the robot set it down.</p>
           </div>
           <figure class="media">
-            <img class="figure-img" src="figures/method/step4.png" width="1600" height="720" loading="lazy" alt="The factor graph for picking and placing the penguin; the grasp is shared by both actions.">
+            <img class="figure-img" src="figures/method/step4.png" width="1920" height="1080" loading="lazy" alt="The planner compiles the whole plan into factors for each action and the couplings between them.">
           </figure>
         </article>
         <article class="step">
@@ -117,21 +117,21 @@
             <p>The agent composes a computation graph of tool calls, segmentation, grasp generation, inverse kinematics, and motion planning, and runs it until every constraint of the first action has a value a tool has certified.</p>
           </div>
           <figure class="media">
-            <img class="figure-img" src="figures/method/step5.png" width="1600" height="720" loading="lazy" alt="The agent's computation graph for picking the penguin, and the grasp candidates it returns.">
+            <img class="figure-img" src="figures/method/step5.png" width="1920" height="1080" loading="lazy" alt="The agent's computation graph of tool calls for picking the penguin.">
           </figure>
         </article>
         <article class="step">
           <div class="prose">
             <h3><span class="step-num">6</span>Act, observe, and update</h3>
-            <p>The planner accepts only when every constraint of the first action is certified. The robot executes that one action and observes, and the agent updates its belief. Once the penguin is set aside, the pink object is in view: what was a hypothesis is now a mask from the camera. The loop starts again from the first step.</p>
+            <p>The planner accepts only when every constraint of the first action is certified. The robot executes that one action and observes, and the agent updates its belief. Once the penguin is set aside, the apple is in view: what was a language hypothesis is now a certified RGB-D estimate. The loop starts again from the first step.</p>
           </div>
           <figure class="media">
-            <img class="figure-img" src="figures/method/step6.png" width="1600" height="720" loading="lazy" alt="The robot moves the penguin, sees the pink object, and the agent updates its belief.">
+            <img class="figure-img" src="figures/method/step6.png" width="1920" height="1080" loading="lazy" alt="After the penguin is placed aside, SAM 3 segments the apple and its belief becomes a certified RGB-D estimate.">
           </figure>
         </article>
         <div class="prose">
           <h3>The rest of the run</h3>
-          <p>The same loop carries the task to the end. Two base motions toward the pink object fail, so the agent picks it from where the robot stands. While carrying it, the robot searches for the bowl until perception certifies its location. No placement fits from the first stance, so the agent repositions the robot, and the object goes into the bowl.</p>
+          <p>The same loop carries the task to the end. Two base motions toward the apple fail, so the agent picks it from where the robot stands. While carrying it, the robot searches for the bowl until perception certifies its location. No placement fits from the first stance, so the agent repositions the robot, and the apple goes into the bowl.</p>
         </div>
       </div>
     </section>
