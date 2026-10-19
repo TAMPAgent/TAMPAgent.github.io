@@ -63,11 +63,13 @@ The RB-Y1 results charts (`figures/rby1_*.png`) come from `../rby1_figures/make_
 
 ## Sandbox viewer
 
-The Sandbox section is generated from the real agent sandbox. After the handbook changes, rebuild:
+The Sandbox section shows the simulation profile of the release: the setup pages and the built sim
+handbook. After the handbook changes, rebuild it and then the viewer:
 
-    cd ../tagent_figures && pipx run --spec markdown python build_sandbox_viewer.py /path/to/codex-sandbox-real
+    python3 <release>/agent/handbook/tampagent/build.py --profile sim --out /tmp/hb-sim
+    cd ../tagent_figures && pipx run --spec markdown python build_sandbox_viewer_sim.py <release> /tmp/hb-sim
 
-This writes `sandbox/docs.js` (every document, pre-rendered) and `sandbox/img/`. Only the handbook,
-one example work folder and the planner records in `../tagent_figures/sandbox_examples/` are
-published; the build refuses to write output containing names, home paths, private addresses or
-the lab location. `sandbox.js` renders the tree and viewer; `#sandbox:<path>` deep-links a document.
+This writes `sandbox/docs.js` (every document, pre-rendered). Only the built handbook and the
+workspace entry page are published; license headers are dropped, and the build refuses to write
+output containing names, home paths, private addresses or credentials. `sandbox.js` renders the
+tree and viewer; `#sandbox:<path>` deep-links a document.

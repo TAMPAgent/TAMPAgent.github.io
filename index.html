@@ -141,34 +141,34 @@
         <div class="prose">
           <p class="section-kicker">Sandbox</p>
           <h2>What the agent sees and writes</h2>
-          <p>On the real robot, the agent is a coding agent in a locked-down container. It has a shell, Python and a handbook, and it reaches the robot only through a gateway that forwards a fixed list of routes. Everything below is from that sandbox: the handbook it reads, and the files it wrote during a real run.</p>
+          <p>The agent is a coding agent, Codex or Claude Code, in a locked-down container. It has a shell, Python and a handbook, and it reaches the robot only through a gateway that forwards a fixed list of routes. Everything below is the simulation setup: how the sandbox is built, and the handbook the agent reads.</p>
         </div>
         <div class="sb-cards">
           <article class="sb-card">
             <h3><span class="sb-num">1</span>Files in its workspace</h3>
-            <p>Each step is a small Python file that states what the agent believes, what it wants to do and, after running, what it achieved. Every request and reply is saved beside it.</p>
+            <p>Each step is a small Python file that states what the agent believes, what it wants to do and, after running, what it achieved. Every loop starts with ranked hypotheses in plain language, and every reply is saved.</p>
             <div class="sb-chips">
-              <button type="button" data-sb-open="work/serve/task_chain.txt">task_chain.txt</button>
-              <button type="button" data-sb-open="work/serve/05_author.py">05_author.py</button>
-              <button type="button" data-sb-open="work/serve/checkpoint.txt">checkpoint.txt</button>
+              <button type="button" data-sb-open="handbook/AGENT.md">AGENT.md</button>
+              <button type="button" data-sb-open="handbook/commands/goal.md">goal.md</button>
+              <button type="button" data-sb-open="handbook/nexus_api.py">nexus_api.py</button>
             </div>
           </article>
           <article class="sb-card">
-            <h3><span class="sb-num">2</span>Beliefs, through the API</h3>
-            <p>It writes the planning problem, what it sees, where things rest, whether access is clear, plans with probabilities, and whether a hand holds an object. These change the planner's belief, never the robot.</p>
+            <h3><span class="sb-num">2</span>Beliefs and plans, through the API</h3>
+            <p>It writes the problem and its inventory, proposes one complete plan that the planner compiles into a CSP, and binds tool receipts to the CSP's variables. These change the planner's belief, never the robot.</p>
             <div class="sb-chips">
-              <button type="button" data-sb-open="work/serve/populate_request.json">the problem</button>
-              <button type="button" data-sb-open="examples/mustard/plan_slates.json">plan slates</button>
-              <button type="button" data-sb-open="handbook/AGENT_CUSTODY.md">custody</button>
+              <button type="button" data-sb-open="handbook/skills/AUTHORING.md">the problem</button>
+              <button type="button" data-sb-open="handbook/skills/PLANNING.md">plans and the CSP</button>
+              <button type="button" data-sb-open="handbook/skills/EVIDENCE.md">tool receipts</button>
             </div>
           </article>
           <article class="sb-card">
             <h3><span class="sb-num">3</span>Requests for motion</h3>
-            <p>It cannot move the robot directly. It asks for a grant for the exact locked step, and the planner issues one only when every constraint of that step is certified. Then it dispatches once.</p>
+            <p>It cannot move the robot directly. It asks for a grant for the exact locked step, and the planner issues one only when every constraint of that step is certified. Then it dispatches once and completes the step.</p>
             <div class="sb-chips">
-              <button type="button" data-sb-open="work/serve/search_grant_request.json">grant request</button>
-              <button type="button" data-sb-open="work/serve/search_grant.json">issued grant</button>
-              <button type="button" data-sb-open="work/serve/08_explore.py">08_explore.py</button>
+              <button type="button" data-sb-open="handbook/PIPELINE.md">skills</button>
+              <button type="button" data-sb-open="handbook/skills/MOVE.md">moving the base</button>
+              <button type="button" data-sb-open="handbook/AGENT_API.md">every route</button>
             </div>
           </article>
         </div>
@@ -179,7 +179,7 @@
           </nav>
           <article class="sb-doc" tabindex="-1" aria-live="polite"></article>
         </div>
-        <p class="sb-foot">The run in <code>/workspace/work/serve</code> is a real episode that a hand fault stopped during the search; the agent's notes show how it waited instead of retrying. The planner records are from the mustard-bottle run in the gallery.</p>
+        <p class="sb-foot">The handbook is the simulation profile's. The real robot uses the same pages, with its own parts where the robots differ: no doors or drawers, and different base motion and Pick completion.</p>
       </div>
     </section>
 
@@ -188,8 +188,12 @@
         <div class="prose">
           <p class="section-kicker">Evaluation</p>
           <h2>Results</h2>
-          <p>Six simulated tasks share one instruction, <em>serve the apple on the plate</em>, and differ in where the apple starts and what hides or blocks it. The robot, an RB-Y1, starts facing away from the apple every time. We compare against Code as Policies (CaP), where the same agent writes code that calls the same tools without a planner, over 20 episodes per task. T7, T8 and T10 are further tasks shown as videos only; they are not in the charts. The charts are from the RB-Y1; the videos show rollouts on the RB-Y1 and on a Unitree G1.</p>
+          <p>Ten simulated tasks share one instruction, <em>serve the apple on the plate</em>, and differ in where the apple starts and what hides or blocks it. The robot, an RB-Y1, starts facing away from the apple every time. We compare against Code as Policies (CaP), where the same agent writes code that calls the same tools without a planner, over 20 episodes per task for T1 to T6. T7, T8 and T10 are further tasks shown as videos only; they are not in the charts. The charts are from the RB-Y1; the videos show rollouts on the RB-Y1 and on a Unitree G1.</p>
         </div>
+        <figure class="media">
+          <img class="figure-img" src="figures/sim_tasks_grid.jpg" width="2848" height="654" loading="lazy" alt="Close-ups of the apple's surroundings in the ten simulated tasks: on the dining table, on the counter, inside the fridge, behind a cup, behind an open drawer, behind both, behind a cracker box, with a cracker box in front of the plate, behind a cup inside the fridge, and behind a mustard bottle">
+          <figcaption>The ten simulated tasks, close-up around the apple. In T3 and T9 the refrigerator doors are drawn translucent so the shelf is visible; in the simulation they are closed.</figcaption>
+        </figure>
         <div class="sim-grid two">
           <figure class="media" style="margin:0"><div class="frame"><video src="videos/sim-t1.mp4" poster="videos/sim-t1.jpg" controls muted playsinline preload="none" aria-label="Task 1 in simulation on a Unitree G1: the robot picks the apple from the dining table and places it on the plate"></video></div><figcaption><span class="tag">T1</span>On the dining table (G1)</figcaption></figure>
           <figure class="media" style="margin:0"><div class="frame"><video src="videos/sim-t3.mp4" poster="videos/sim-t3.jpg" controls muted playsinline preload="none" aria-label="Task 3 in simulation on an RB-Y1: the apple is not on the counters, so the agent shifts its belief to the fridge, opens the door, picks the apple from a shelf and places it on the plate"></video></div><figcaption><span class="tag">T3</span>Inside the fridge (RB-Y1)</figcaption></figure>
