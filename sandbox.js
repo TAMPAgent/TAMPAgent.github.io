@@ -14,6 +14,7 @@
     agent: ["Written by the agent", "is-agent"],
     reply: ["Saved by the agent from a reply", "is-reply"],
     record: ["Planner record of agent declarations", "is-record"],
+    loop: ["One loop: agent, planner and tools", "is-record"],
   };
   let current = null;
 

@@ -141,16 +141,16 @@
         <div class="prose">
           <p class="section-kicker">Sandbox</p>
           <h2>What the agent sees and writes</h2>
-          <p>The agent is a coding agent, Codex or Claude Code, in a locked-down container. It has a shell, Python and a handbook, and it reaches the robot only through a gateway that forwards a fixed list of routes. Everything below is the simulation setup: how the sandbox is built, and the handbook the agent reads.</p>
+          <p>The agent is a coding agent, Codex or Claude Code, in a locked-down container. It has a shell, Python and a handbook, and it reaches the robot only through a gateway that forwards a fixed list of routes. Everything below is from simulation: how the sandbox is built, the handbook the agent reads, and one run of task T10, loop by loop.</p>
         </div>
         <div class="sb-cards">
           <article class="sb-card">
             <h3><span class="sb-num">1</span>Files in its workspace</h3>
             <p>Each step is a small Python file that states what the agent believes, what it wants to do and, after running, what it achieved. Every loop starts with ranked hypotheses in plain language, and every reply is saved.</p>
             <div class="sb-chips">
-              <button type="button" data-sb-open="handbook/AGENT.md">AGENT.md</button>
-              <button type="button" data-sb-open="handbook/commands/goal.md">goal.md</button>
-              <button type="button" data-sb-open="handbook/nexus_api.py">nexus_api.py</button>
+              <button type="button" data-sb-open="work/t10/README.md">the run, by loop</button>
+              <button type="button" data-sb-open="work/apple_transfer/hypotheses.md">hypotheses.md</button>
+              <button type="button" data-sb-open="work/apple_transfer/init.py">init.py</button>
             </div>
           </article>
           <article class="sb-card">
@@ -167,7 +167,7 @@
             <p>It cannot move the robot directly. It asks for a grant for the exact locked step, and the planner issues one only when every constraint of that step is certified. Then it dispatches once and completes the step.</p>
             <div class="sb-chips">
               <button type="button" data-sb-open="handbook/PIPELINE.md">skills</button>
-              <button type="button" data-sb-open="handbook/skills/MOVE.md">moving the base</button>
+              <button type="button" data-sb-open="work/t10/loop05">a refused close</button>
               <button type="button" data-sb-open="handbook/AGENT_API.md">every route</button>
             </div>
           </article>
@@ -179,7 +179,7 @@
           </nav>
           <article class="sb-doc" tabindex="-1" aria-live="polite"></article>
         </div>
-        <p class="sb-foot">The handbook is the simulation profile's. The real robot uses the same pages, with its own parts where the robots differ: no doors or drawers, and different base motion and Pick completion.</p>
+        <p class="sb-foot">The run is task T10, where a cracker box and a mustard bottle hide the apple; <a href="#sim-t10">the T10 video</a> shows the full rollout. The handbook is the simulation profile's; the real robot uses the same pages, with its own parts where the robots differ.</p>
       </div>
     </section>
 
@@ -202,7 +202,7 @@
           <figure class="media" style="margin:0"><div class="frame"><video src="videos/sim-t5.mp4" poster="videos/sim-t5.jpg" controls muted playsinline preload="none" aria-label="Task 5 in simulation on an RB-Y1: an open drawer blocks the approach, the agent closes it, picks the apple, and places it on the plate"></video></div><figcaption><span class="tag">T5</span>Blocked by a drawer (RB-Y1)</figcaption></figure>
           <figure class="media" style="margin:0"><div class="frame"><video src="videos/sim-t7.mp4" poster="videos/sim-t7.jpg" controls muted playsinline preload="none" aria-label="Task 7 in simulation on an RB-Y1: a cracker box hides the apple on the counter, the agent moves the box onto the stove, picks the apple, and places it on the plate after recovering from a refused placement"></video></div><figcaption><span class="tag">T7</span>Hidden behind a cracker box (RB-Y1)</figcaption></figure>
           <figure class="media" style="margin:0"><div class="frame"><video src="videos/sim-t8.mp4" poster="videos/sim-t8.jpg" controls muted playsinline preload="none" aria-label="Task 8 in simulation on an RB-Y1: the agent searches the room for the apple and the plate, finds both on the dining table, picks the apple, and places it on the plate after adjusting its stance and torso height to clear refused placements"></video></div><figcaption><span class="tag">T8</span>Search, then place on a cluttered table (RB-Y1)</figcaption></figure>
-          <figure class="media" style="margin:0"><div class="frame"><video src="videos/sim-t10.mp4" poster="videos/sim-t10.jpg" controls muted playsinline preload="none" aria-label="Task 10 in simulation on an RB-Y1: the agent searches the kitchen for the apple, moves a cracker box and then a mustard bottle that hide it, picks the apple, and carries it to the plate on the dining table"></video></div><figcaption><span class="tag">T10</span>Clear two occluders, then carry to the table (RB-Y1)</figcaption></figure>
+          <figure class="media" id="sim-t10" style="margin:0"><div class="frame"><video src="videos/sim-t10.mp4" poster="videos/sim-t10.jpg" controls muted playsinline preload="none" aria-label="Task 10 in simulation on an RB-Y1: the agent searches the kitchen for the apple, moves a cracker box and then a mustard bottle that hide it, picks the apple, and carries it to the plate on the dining table"></video></div><figcaption><span class="tag">T10</span>Clear two occluders, then carry to the table (RB-Y1)</figcaption></figure>
         </div>
 
         <div class="prose">
