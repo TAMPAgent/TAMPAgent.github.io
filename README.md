@@ -71,6 +71,7 @@ handbook. After the handbook changes, rebuild it and then the viewer:
         <T10 run dir> <its extracted workspace/work/apple_transfer> [<closeup planned-motion clips dir>]
 
 This writes `sandbox/docs.js` (every document, pre-rendered), `sandbox/img/` and `sandbox/vid/` (the planned grasp and place clips shown in the loops). Only the built
-handbook, the workspace entry page and the T10 run, arranged by the agent's loops, are published; license headers are dropped, and the build refuses to write
+handbook, the workspace entry page and the T10 run, arranged by the agent's loops and taken verbatim from its session log (messages, files, commands,
+images viewed, replies clipped), are published; license headers are dropped, and the build refuses to write
 output containing names, home paths, private addresses or credentials. `sandbox.js` renders the
 tree and viewer; `#sandbox:<path>` deep-links a document.
