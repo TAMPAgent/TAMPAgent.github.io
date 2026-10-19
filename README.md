@@ -68,9 +68,9 @@ handbook. After the handbook changes, rebuild it and then the viewer:
 
     python3 <release>/agent/handbook/tampagent/build.py --profile sim --out /tmp/hb-sim
     cd ../tagent_figures && pipx run --spec markdown python build_sandbox_viewer_sim.py <release> /tmp/hb-sim \
-        <T10 run dir> <its extracted workspace/work/apple_transfer>
+        <T10 run dir> <its extracted workspace/work/apple_transfer> [<closeup planned-motion clips dir>]
 
-This writes `sandbox/docs.js` (every document, pre-rendered) and `sandbox/img/`. Only the built
+This writes `sandbox/docs.js` (every document, pre-rendered), `sandbox/img/` and `sandbox/vid/` (the planned grasp and place clips shown in the loops). Only the built
 handbook, the workspace entry page and the T10 run, arranged by the agent's loops, are published; license headers are dropped, and the build refuses to write
 output containing names, home paths, private addresses or credentials. `sandbox.js` renders the
 tree and viewer; `#sandbox:<path>` deep-links a document.

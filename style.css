@@ -330,6 +330,7 @@ footer { margin-top: 64px; padding: 28px 0 48px; border-top: 1px solid var(--lin
 .sb-achieved { color: var(--accent-ink); font-weight: 600; }
 .sb-comment { color: var(--soft); }
 .sb-img { display: block; max-width: 100%; border-radius: 8px; border: 1px solid var(--line); }
+video.sb-img { width: 100%; height: auto; background: #f2f2f0; }
 .sb-foot { max-width: var(--text); margin: 14px auto 0; font-size: 14px; color: var(--muted); }
 
 @media (max-width: 860px) {
