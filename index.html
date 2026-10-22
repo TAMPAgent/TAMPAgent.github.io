@@ -188,7 +188,7 @@
         <div class="prose">
           <p class="section-kicker">Evaluation</p>
           <h2>Results</h2>
-          <p>Ten simulated tasks share one instruction, <em>serve the apple on the plate</em>, and differ in where the apple starts and what hides or blocks it. The robot, an RB-Y1, starts facing away from the apple every time. We compare against Code as Policies (CaP), where the same agent writes code that calls the same tools without a planner, over 20 episodes per task for T1 to T6. T7, T8 and T10 are further tasks shown as videos only; they are not in the charts. The charts are from the RB-Y1; the videos show rollouts on the RB-Y1 and on a Unitree G1.</p>
+          <p>Ten simulated tasks share one instruction, <em>serve the apple on the plate</em>, and differ in where the apple starts and what hides or blocks it. The robot, an RB-Y1, starts facing away from the apple every time. We compare against Code as Policies (CaP), where the same agent writes code that calls the same tools without a planner, over 20 episodes per task on nine of them (T1 to T8 and T10). CaP runs GPT-6-Astra at high reasoning effort and TAMPAgent at low, and each episode has 25 minutes of simulated time. The charts are from the RB-Y1; the videos show rollouts on the RB-Y1 and on a Unitree G1.</p>
         </div>
         <figure class="media">
           <img class="figure-img" src="figures/sim_tasks_grid.jpg" width="2848" height="654" loading="lazy" alt="Close-ups of the apple's surroundings in the ten simulated tasks: on the dining table, on the counter, inside the fridge, behind a cup, behind an open drawer, behind both, behind a cracker box, with a cracker box in front of the plate, behind a cup inside the fridge, and behind a mustard bottle">
@@ -207,7 +207,7 @@
 
         <div class="prose">
           <h3>Hypotheses and long-horizon dependencies</h3>
-          <p>The methods are on par when the apple is in the open (T1, T2). When it is hidden or blocked (T3 to T6), TAMPAgent succeeds in 68% of episodes against 38%. A plausible but infeasible plan, such as picking the apple through the cup, fails in the planner before the robot moves, and the failed constraint names what the agent must clear first.</p>
+          <p>The methods are on par when the apple is in the open (T1, T2). When it is hidden or blocked (T3 to T8 and T10), TAMPAgent succeeds in 70% of episodes against 38%. Over all nine tasks, it succeeds in 75% against 49%. A plausible but infeasible plan, such as picking the apple through the cup, fails in the planner before the robot moves, and the failed constraint names what the agent must clear first.</p>
         </div>
         <figure class="media">
           <img class="figure-img" src="figures/rby1_success.png" width="2000" height="546" loading="lazy" alt="Absolute and partial success per task for CaP and TAMPAgent">
@@ -215,17 +215,17 @@
         </figure>
 
         <div class="prose">
-          <h3>Safer execution</h3>
-          <p>Every motion TAMPAgent executes was certified first, so it causes 10 collisions or drops over the six tasks against 26 for CaP, and none on the drawer task, where CaP collides in 7 of 20 episodes. Its failures are mostly timeouts instead, which leave the scene intact.</p>
+          <h3>Fewer failures</h3>
+          <p>An episode fails when an object falls or the scene is destroyed, or when its time runs out. Every motion TAMPAgent executes was certified first, so over the nine tasks it drops an object or destroys the scene in 13 episodes against 19 for CaP, and it times out in 25 against 60.</p>
         </div>
         <figure class="media narrow">
-          <img class="figure-img" src="figures/rby1_failures.png" width="1120" height="726" loading="lazy" alt="Failed episodes per task for CaP and TAMPAgent, split into collisions or drops and timeouts">
-          <figcaption>Failed episodes out of 20: collisions or drops (solid) and timeouts (hatched).</figcaption>
+          <img class="figure-img" src="figures/rby1_failures.png" width="1120" height="726" loading="lazy" alt="Failed episodes per task for CaP and TAMPAgent, split into an object falling or the scene destroyed, and timeouts">
+          <figcaption>Failed episodes out of 20: an object fell or the scene was destroyed (solid), and timeouts (hatched).</figcaption>
         </figure>
 
         <div class="prose">
           <h3>Fewer tokens</h3>
-          <p>The planner keeps a compact record of the problem and its progress, so the agent reads and writes less: 38% fewer uncached input tokens and 59% fewer output tokens over the six tasks, including those where success is on par.</p>
+          <p>The planner keeps a compact record of the problem and its progress, so the agent reads and writes less: 22% fewer uncached input tokens and 33% fewer output tokens over the nine tasks, including those where success is on par.</p>
         </div>
         <figure class="media">
           <img class="figure-img" src="figures/rby1_tokens.png" width="2000" height="546" loading="lazy" alt="Uncached input and output tokens per task for CaP and TAMPAgent">
